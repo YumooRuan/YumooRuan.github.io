@@ -3,676 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人博客</title>
+    <title>我的GitHub博客</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* 基础样式 */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #e9ecef;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --accent-color: #4895ef;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --gray-color: #6c757d;
-            --success-color: #4cc9f0;
-            --transition: all 0.3s ease;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         body {
             background-color: #f5f7fb;
-            color: var(--dark-color);
+            color: var(--dark);
             line-height: 1.6;
+            padding: 0;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
         /* 头部样式 */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
         .logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
+            margin-bottom: 10px;
         }
         
-        .logo a {
-            color: white;
-            text-decoration: none;
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
         
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 25px;
-        }
-        
-        .nav-menu a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        
-        .nav-menu a:hover {
-            color: white;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* 英雄区域 */
-        .hero {
-            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(67, 97, 238, 0.8)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-            margin-bottom: 50px;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: white;
-            color: var(--primary-color);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: var(--transition);
-            border: 2px solid white;
-        }
-        
-        .btn:hover {
-            background-color: transparent;
-            color: white;
-        }
-        
-        /* 主要内容区域 */
-        .main-content {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .blog-posts {
-            flex: 3;
-        }
-        
-        .sidebar {
-            flex: 1;
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--primary-color);
-            color: var(--dark-color);
-        }
-        
-        /* 博客文章 */
+        /* 文章样式 */
         .post {
-            background-color: white;
+            background: white;
             border-radius: 10px;
-            overflow: hidden;
+            padding: 30px;
+            margin-bottom: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-            transition: var(--transition);
+            transition: transform 0.3s ease;
         }
         
         .post:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .post-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-        
-        .post-content {
-            padding: 25px;
         }
         
         .post-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 15px;
-        }
-        
-        .post-title a {
-            color: var(--dark-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .post-title a:hover {
-            color: var(--primary-color);
+            color: var(--secondary);
         }
         
         .post-meta {
             display: flex;
-            margin-bottom: 15px;
-            color: var(--gray-color);
+            color: var(--gray);
             font-size: 0.9rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
         }
         
         .post-meta span {
             margin-right: 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
         }
         
         .post-meta i {
             margin-right: 5px;
         }
         
-        .post-excerpt {
-            margin-bottom: 20px;
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
-        .read-more {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
+        .post-content h2 {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+            color: var(--primary);
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--accent);
         }
         
-        .read-more i {
-            margin-left: 5px;
-            transition: var(--transition);
-        }
-        
-        .read-more:hover i {
-            transform: translateX(3px);
-        }
-        
-        /* 侧边栏 */
-        .sidebar-widget {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .about-widget img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto 20px;
-            border: 5px solid #f0f4ff;
-        }
-        
-        .about-widget p {
+        .post-content p {
             margin-bottom: 15px;
-            text-align: center;
         }
         
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
+        .post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         
-        .social-links a {
+        /* 编辑指南区域 */
+        .edit-guide {
+            background-color: #e6f7ff;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        .edit-guide h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .edit-steps {
+            counter-reset: step-counter;
+            margin: 20px 0;
+        }
+        
+        .edit-step {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .edit-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #f0f4ff;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .category-list {
-            list-style: none;
-        }
-        
-        .category-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .category-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .category-list a {
-            color: var(--dark-color);
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            transition: var(--transition);
-        }
-        
-        .category-list a:hover {
-            color: var(--primary-color);
-        }
-        
-        .category-list span {
-            background-color: #f0f4ff;
-            color: var(--primary-color);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .popular-posts .post {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        
-        .popular-posts .post:last-child {
-            margin-bottom: 0;
-        }
-        
-        .popular-posts .post-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 5px;
-            margin-right: 15px;
-        }
-        
-        .popular-posts .post-content {
-            padding: 0;
-        }
-        
-        .popular-posts .post-title {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-        
-        .popular-posts .post-meta {
-            margin-bottom: 0;
-            font-size: 0.8rem;
+            font-weight: bold;
         }
         
         /* 页脚 */
         footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 60px 0 30px;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-widget {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-widget h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-widget h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--primary-color);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .footer-contact p {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-        }
-        
-        .footer-contact i {
-            margin-right: 10px;
-            color: var(--primary-color);
-            margin-top: 5px;
-        }
-        
-        .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #aaa;
+            padding: 40px 0;
+            color: var(--gray);
             font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
         }
         
         /* 响应式设计 */
-        @media (max-width: 992px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                background-color: var(--primary-color);
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
                 padding: 20px 0;
-                transition: var(--transition);
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
             
-            .nav-menu.active {
-                left: 0;
+            .logo {
+                font-size: 1.8rem;
             }
             
-            .nav-menu li {
-                margin: 15px 0;
+            .post {
+                padding: 20px;
             }
             
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero {
-                padding: 80px 20px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
+            .post-title {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 头部导航 -->
     <header>
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html">我的博客</a>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="#">技术</a></li>
-                <li><a href="#">生活</a></li>
-                <li><a href="#">旅行</a></li>
-                <li><a href="#">关于</a></li>
-                <li><a href="#">联系</a></li>
-            </ul>
+        <div class="container">
+            <div class="logo">我的GitHub博客</div>
+            <p class="tagline">直接在GitHub上编辑的简易博客</p>
         </div>
     </header>
 
-    <!-- 英雄区域 -->
-    <section class="hero">
-        <div class="container">
-            <h1>欢迎来到我的个人博客</h1>
-            <p>在这里，我分享技术见解、生活感悟和旅行见闻。每一篇文章都是我用心创作的成果，希望能给你带来启发和帮助。</p>
-            <a href="#" class="btn">浏览文章</a>
-        </div>
-    </section>
-
-    <!-- 主要内容 -->
-    <div class="container main-content">
-        <!-- 博客文章列表 -->
-        <main class="blog-posts">
-            <h2 class="section-title">最新文章</h2>
-            
-            <article class="post">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="编程" class="post-image">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="#">如何从零开始学习Web开发</a></h3>
-                    <div class="post-meta">
-                        <span><i class="far fa-calendar"></i> 2023年10月15日</span>
-                        <span><i class="far fa-folder"></i> 技术</span>
-                        <span><i class="far fa-comments"></i> 12条评论</span>
-                    </div>
-                    <p class="post-excerpt">在这篇文章中，我将分享我自学Web开发的经验，包括学习路径、资源推荐以及如何克服学习过程中的困难。无论你是完全的初学者还是有一定基础，这篇文章都能给你带来帮助。</p>
-                    <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            
-            <article class="post">
-                <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="旅行" class="post-image">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="#">日本京都的传统文化体验之旅</a></h3>
-                    <div class="post-meta">
-                        <span><i class="far fa-calendar"></i> 2023年10月5日</span>
-                        <span><i class="far fa-folder"></i> 旅行</span>
-                        <span><i class="far fa-comments"></i> 8条评论</span>
-                    </div>
-                    <p class="post-excerpt">京都作为日本的古都，保留了丰富的传统文化。在这篇文章中，我将带你体验京都的茶道、和服、庭园等传统文化，分享我的旅行见闻和实用建议。</p>
-                    <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-            
-            <article class="post">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="阅读" class="post-image">
-                <div class="post-content">
-                    <h3 class="post-title"><a href="#">2023年我最推荐的5本自我提升书籍</a></h3>
-                    <div class="post-meta">
-                        <span><i class="far fa-calendar"></i> 2023年9月28日</span>
-                        <span><i class="far fa-folder"></i> 生活</span>
-                        <span><i class="far fa-comments"></i> 15条评论</span>
-                    </div>
-                    <p class="post-excerpt">阅读是自我提升的最佳途径之一。今年我阅读了许多优秀的书籍，从中精选了5本对我影响最大的书籍推荐给大家，涵盖思维模式、习惯养成、沟通技巧等方面。</p>
-                    <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
-        </main>
-        
-        <!-- 侧边栏 -->
-        <aside class="sidebar">
-            <div class="sidebar-widget about-widget">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="博主">
-                <h3>关于我</h3>
-                <p>你好，我是李明，一名热爱技术和旅行的博主。在这里分享我的知识和生活体验。</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-weibo"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
+    <div class="container">
+        <article class="post">
+            <h1 class="post-title">GitHub Pages博客编辑指南</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar"></i> 2023年10月25日</span>
+                <span><i class="far fa-folder"></i> 技术指南</span>
+                <span><i class="far fa-clock"></i> 阅读时间 5分钟</span>
             </div>
             
-            <div class="sidebar-widget">
-                <h3>文章分类</h3>
-                <ul class="category-list">
-                    <li><a href="#">技术 <span>15</span></a></li>
-                    <li><a href="#">生活感悟 <span>8</span></a></li>
-                    <li><a href="#">旅行见闻 <span>6</span></a></li>
-                    <li><a href="#">读书笔记 <span>10</span></a></li>
-                    <li><a href="#">摄影技巧 <span>4</span></a></li>
+            <div class="post-content">
+                <p>欢迎来到我的GitHub博客！这个博客完全托管在GitHub Pages上，你可以直接在GitHub网页界面上编辑内容。</p>
+                
+                <div class="edit-guide">
+                    <h3><i class="fas fa-edit"></i> 快速编辑指南</h3>
+                    <p>按照以下步骤编辑你的博客内容：</p>
+                    
+                    <div class="edit-steps">
+                        <div class="edit-step">
+                            <h4>登录GitHub</h4>
+                            <p>访问 <a href="https://github.com" target="_blank">github.com</a> 并登录你的账号</p>
+                        </div>
+                        
+                        <div class="edit-step">
+                            <h4>打开博客仓库</h4>
+                            <p>找到你的博客仓库（通常名为 <code>你的用户名.github.io</code>）</p>
+                        </div>
+                        
+                        <div class="edit-step">
+                            <h4>编辑index.html文件</h4>
+                            <p>点击<code>index.html</code>文件 > 点击右上角的铅笔图标</p>
+                        </div>
+                        
+                        <div class="edit-step">
+                            <h4>修改内容</h4>
+                            <p>在编辑器中修改HTML内容（下面有详细指南）</p>
+                        </div>
+                        
+                        <div class="edit-step">
+                            <h4>提交更改</h4>
+                            <p>滚动到底部 > 填写提交信息 > 点击"Commit changes"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>添加新文章</h2>
+                <p>要添加新文章，只需复制以下HTML结构并修改内容：</p>
+                
+                <pre><code>&lt;article class="post"&gt;
+  &lt;h1 class="post-title"&gt;文章标题&lt;/h1&gt;
+  &lt;div class="post-meta"&gt;
+    &lt;span&gt;&lt;i class="far fa-calendar"&gt;&lt;/i&gt; 日期&lt;/span&gt;
+    &lt;span&gt;&lt;i class="far fa-folder"&gt;&lt;/i&gt; 分类&lt;/span&gt;
+    &lt;span&gt;&lt;i class="far fa-clock"&gt;&lt;/i&gt; 阅读时间&lt;/span&gt;
+  &lt;/div&gt;
+  
+  &lt;div class="post-content"&gt;
+    &lt;p&gt;这里是文章内容...&lt;/p&gt;
+    
+    &lt;h2&gt;二级标题&lt;/h2&gt;
+    &lt;p&gt;更多内容...&lt;/p&gt;
+    
+    &lt;img src="图片URL" alt="图片描述"&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+                
+                <h2>编辑技巧</h2>
+                
+                <div class="edit-guide">
+                    <h3><i class="fas fa-lightbulb"></i> 内容编辑提示</h3>
+                    
+                    <h4>添加段落</h4>
+                    <pre><code>&lt;p&gt;这是一个新段落&lt;/p&gt;</code></pre>
+                    
+                    <h4>添加图片</h4>
+                    <pre><code>&lt;img src="图片URL" alt="图片描述"&gt;</code></pre>
+                    
+                    <h4>添加链接</h4>
+                    <pre><code>&lt;a href="https://example.com"&gt;链接文本&lt;/a&gt;</code></pre>
+                    
+                    <h4>添加列表</h4>
+                    <pre><code>&lt;ul&gt;
+  &lt;li&gt;项目1&lt;/li&gt;
+  &lt;li&gt;项目2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    
+                    <h4>添加代码块</h4>
+                    <pre><code>&lt;pre&gt;&lt;code&gt;你的代码在这里&lt;/code&gt;&lt;/pre&gt;</code></pre>
+                </div>
+                
+                <h2>免费图片资源</h2>
+                <p>为你的博客添加高质量图片：</p>
+                
+                <ul>
+                    <li><strong>Unsplash</strong>: <a href="https://unsplash.com" target="_blank">https://unsplash.com</a></li>
+                    <li><strong>Pexels</strong>: <a href="https://pexels.com" target="_blank">https://pexels.com</a></li>
+                    <li><strong>Pixabay</strong>: <a href="https://pixabay.com" target="_blank">https://pixabay.com</a></li>
                 </ul>
             </div>
-            
-            <div class="sidebar-widget popular-posts">
-                <h3>热门文章</h3>
-                <div class="post">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="热门文章1" class="post-image">
-                    <div class="post-content">
-                        <h4 class="post-title"><a href="#">Python数据分析入门指南</a></h4>
-                        <div class="post-meta">
-                            <span>2023-09-15</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="热门文章2" class="post-image">
-                    <div class="post-content">
-                        <h4 class="post-title"><a href="#">巴厘岛自由行全攻略</a></h4>
-                        <div class="post-meta">
-                            <span>2023-08-22</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="post">
-                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="热门文章3" class="post-image">
-                    <div class="post-content">
-                        <h4 class="post-title"><a href="#">高效工作的时间管理方法</a></h4>
-                        <div class="post-meta">
-                            <span>2023-08-10</span>
-                        </div>
-                    </div>
-                </div>
+        </article>
+        
+        <!-- 新文章从这里开始 -->
+        <article class="post">
+            <h1 class="post-title">我的第一篇文章</h1>
+            <div class="post-meta">
+                <span><i class="far fa-calendar"></i> 2023年10月20日</span>
+                <span><i class="far fa-folder"></i> 生活感悟</span>
+                <span><i class="far fa-clock"></i> 阅读时间 3分钟</span>
             </div>
-        </aside>
+            
+            <div class="post-content">
+                <p>这是我博客的第一篇文章，用来测试博客的功能和样式。</p>
+                
+                <p>GitHub Pages是一个非常适合技术博客的平台：</p>
+                
+                <ul>
+                    <li>完全免费的托管服务</li>
+                    <li>简单的部署流程</li>
+                    <li>版本控制功能</li>
+                    <li>自定义域名的支持</li>
+                </ul>
+                
+                <p>建立这个博客的初衷是记录我的学习和成长过程，分享有价值的知识。</p>
+                
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="写作环境">
+                
+                <h2>博客写作的意义</h2>
+                
+                <p>通过写作，我们可以：</p>
+                
+                <ol>
+                    <li>整理自己的知识和思路</li>
+                    <li>帮助他人解决问题</li>
+                    <li>建立个人品牌和专业形象</li>
+                    <li>记录成长历程</li>
+                </ol>
+                
+                <p>期待在这里与你分享更多精彩内容！</p>
+            </div>
+        </article>
     </div>
     
-    <!-- 页脚 -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-widget">
-                    <h3>关于博客</h3>
-                    <p>这个博客是我分享知识和经验的地方，希望能为读者提供有价值的内容和启发。</p>
-                </div>
-                
-                <div class="footer-widget">
-                    <h3>快速链接</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">关于我</a></li>
-                        <li><a href="#">所有文章</a></li>
-                        <li><a href="#">联系我</a></li>
-                        <li><a href="#">隐私政策</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-widget">
-                    <h3>分类</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">技术</a></li>
-                        <li><a href="#">生活</a></li>
-                        <li><a href="#">旅行</a></li>
-                        <li><a href="#">读书</a></li>
-                        <li><a href="#">摄影</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-widget footer-contact">
-                    <h3>联系我</h3>
-                    <p><i class="fas fa-envelope"></i> contact@myblog.com</p>
-                    <p><i class="fas fa-phone"></i> +86 123 4567 8910</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 北京市海淀区中关村</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 我的个人博客. 保留所有权利 | 使用HTML、CSS和JavaScript构建</p>
-            </div>
+            <p>© 2023 我的GitHub博客 | 基于GitHub Pages构建</p>
+            <p>使用HTML和CSS创建 | 直接在GitHub上编辑</p>
+            <p>更新于: 2023年10月25日</p>
         </div>
     </footer>
     
-    <script>
-        // 移动端菜单切换
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // 切换菜单图标
-            const icon = mobileMenuBtn.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // 关闭菜单当点击菜单项
-        document.querySelectorAll('.nav-menu a').forEach(item => {
-            item.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
-                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
-            });
-        });
-    </script>
+    <!-- Font Awesome 图标 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
